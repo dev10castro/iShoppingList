@@ -6,7 +6,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Add_To_List_activity">
+    tools:context=".Add_To_List_activity"
+    android:background="@drawable/fondo">
 
     <!-- Este LinearLayout ocupa el espacio superior y empuja los botones hacia abajo -->
     <LinearLayout
@@ -15,7 +16,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/buttonLayout"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/fondo">
+        >
 
         <TextView
             android:id="@+id/textView2"
@@ -29,7 +30,8 @@
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            />
     </LinearLayout>
 
     <!-- LinearLayout para los botones en la parte inferior -->

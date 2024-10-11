@@ -52,8 +52,8 @@ public class Product implements Serializable {
         this.nota_info = nota_info;
     }
 
-    public void setEstado_compra(String estado_compra) {
-        this.estado_compra = Boolean.parseBoolean(estado_compra);
+    public void setEstado_compra(boolean estado_compra) {
+        this.estado_compra = estado_compra;
     }
 
     @Override

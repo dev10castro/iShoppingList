@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -34,14 +35,6 @@
             android:text="Info"
             android:textSize="16sp"
             android:textStyle="bold" />
-
-        <Switch
-            android:id="@+id/switch1"
-            android:layout_width="407dp"
-            android:layout_height="30dp"
-            android:text="Switch"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="75dp" />
 
     </LinearLayout>
 

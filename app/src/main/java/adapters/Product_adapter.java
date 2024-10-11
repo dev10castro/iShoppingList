@@ -1,7 +1,11 @@
 package adapters;
 
+import static dataBase.DataBase.productList;
+import static dataBase.DataBase.purchasedProductList;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -30,19 +34,44 @@ public class Product_adapter extends ArrayAdapter<Product> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         if(convertView==null){
-            convertView = View.inflate(getContext(), R.layout.detail_product, null);
+            convertView = View.inflate(getContext(), R.layout.item_product, null);
         }
         Product p = this.products.get(position);
 
         TextView tvName = convertView.findViewById(R.id.textname);
         TextView tvInfo = convertView.findViewById(R.id.textNoteInfo);
-        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch swStatus = convertView.findViewById(R.id.switch1);
+
 
         tvName.setText(p.getNombre_producto());
         tvInfo.setText(p.getNota_info());
-        swStatus.setChecked(p.getEstado_compra());
 
 
+
+        return convertView;
+    }
+
+    // Método para crear y devolver la vista de cada elemento desplegable del Spinner.
+    @Override
+    public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
+
+        // Obtiene la persona en la posición actual desde la lista.
+        Product product = purchasedProductList.get(position);
+
+        // Si convertView es nulo, infla una nueva vista desde el layout 'item_person' para el desplegable.
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_product, parent, false);
+        }
+
+        // Obtiene la referencia al TextView que mostrará el nombre completo de la persona.
+        TextView tvName = convertView.findViewById(R.id.textname);
+        TextView tvInfo = convertView.findViewById(R.id.textNoteInfo);
+
+        // Asigna el nombre y apellido de la persona al TextView.
+        tvName.setText(product.getNombre_producto());
+        tvInfo.setText(product.getNota_info());
+
+
+        // Devuelve la vista actualizada para el elemento desplegable.
         return convertView;
     }
 }

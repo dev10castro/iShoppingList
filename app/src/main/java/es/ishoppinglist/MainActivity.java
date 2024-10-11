@@ -2,7 +2,10 @@ package es.ishoppinglist;
 
 import static dataBase.DataBase.inicializeList;
 import static dataBase.DataBase.initializePendingProducts;
+import static dataBase.DataBase.initializePurchasedProducts;
 import static dataBase.DataBase.pendingProductList;
+import static dataBase.DataBase.productList;
+import static dataBase.DataBase.purchasedProductList;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         ListView lsShList = findViewById(R.id.lvShoProduct);
         inicializeList();
         initializePendingProducts();
+        initializePurchasedProducts();
 
         Product_adapter adapter = new Product_adapter(MainActivity.this, 0, pendingProductList);
 
@@ -61,6 +65,33 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentToAddP);
             }
         });
+
+        // Define un listener para manejar los clics en los elementos del ListView.
+        lsShList.setOnItemClickListener((parent, view, position, id) -> {
+            // Obtiene la producto seleccionada en la posición del clic.
+            Product product = pendingProductList.get(position);
+
+            // Muestra la información de la persona seleccionada en los logs para depuración.
+            Log.i("product click", product.toString());
+
+            // Crea un intent para lanzar la actividad de detalles (Detaill_Activity).
+            Intent detailIntent = new Intent(MainActivity.this, Activity_detaill.class);
+
+            // Agrega la persona seleccionada al intent como extra para pasarlo a la actividad de detalles.
+            detailIntent.putExtra("product", product);
+
+
+
+            detailIntent.putExtra("product", product);
+            // Inicia la actividad de detalles.
+            startActivity(detailIntent);
+        });
+
+        //define un listener para seleccionar un producto del listview y te lleve a la pantalla detalle
+
+
+
+
 
 
 

@@ -57,7 +57,7 @@ public class DataBase {
     public static void initializePurchasedProducts() {
         purchasedProductList = new ArrayList<>();
         for (Product product : productList) {
-            if (product.getEstado_compra()) {
+            if (!product.getEstado_compra()) {
                 purchasedProductList.add(product);
             }
         }

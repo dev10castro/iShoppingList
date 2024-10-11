@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/fondo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        >
+
+
+        <TextView
+            android:id="@+id/textMain"
+            android:layout_width="393dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="lista_de_la_compra"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold|italic"
+
+
+            />
+
+        <ListView
+            android:id="@+id/lvShoProduct"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_marginStart="1dp"
+            android:layout_weight="1"
+
+
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonaddProduct"
+                android:layout_width="143dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:height="80dp"
+                android:backgroundTint="@color/green"
+                android:text="Añadir Producto"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/buttonAddList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:height="80dp"
+                android:backgroundTint="@color/green"
+                android:text="Ver Productos"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
+import dataBase.DataBase;
 import es.ishoppinglist.R;
 import models.Product;
 
@@ -54,8 +55,9 @@ public class Product_adapter extends ArrayAdapter<Product> {
     @Override
     public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
 
+        products = DataBase.getProductToList();
         // Obtiene la persona en la posición actual desde la lista.
-        Product product = productList.get(position);
+        Product product = products.get(position);
 
         // Si convertView es nulo, infla una nueva vista desde el layout 'item_person' para el desplegable.
         if (convertView == null) {

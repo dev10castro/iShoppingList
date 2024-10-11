@@ -13,17 +13,19 @@
         android:theme="@style/Theme.IShoppingList_evaluable"
         tools:targetApi="31">
         <activity
+            android:name=".EditProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".Add_New_Product"
             android:exported="false" />
         <activity
             android:name=".Activity_detaill"
             android:exported="false" />
-
         <activity
             android:name=".Detaill_activity"
             android:exported="false" />
         <activity
-            android:name=".Add_To_List_activity"
+            android:name=".Spinner_activity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Add_To_List_activity"
+    tools:context=".Spinner_activity"
     android:background="@drawable/fondo">
 
     <!-- Este LinearLayout ocupa el espacio superior y empuja los botones hacia abajo -->

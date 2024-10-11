@@ -2,9 +2,12 @@ package es.ishoppinglist;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,22 +57,19 @@ public class Add_New_Product extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Product pAux = new Product();
-                pAux.setId(DataBase.getIdMax());
+                pAux.setId(DataBase.getIdMax() + 1);
                 pAux.setNombre_producto(editTextText.getText().toString());
                 pAux.setNota_info(editTextInfoAddP.getText().toString());
                 pAux.setEstado_compra(switchAddP.isChecked());
 
-                // Validación del nombre del producto
-                if (pAux.getNombre_producto().isEmpty()) {
-                    Toast.makeText(Add_New_Product.this, "El nombre del producto no puede estar vacío", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                // Log product details
+                Log.d("Add_New_Product", "Adding product: " + pAux.toString());
 
                 // Añadir el producto a la base de datos
                 DataBase.addProduct(pAux, Add_New_Product.this);
 
                 // Actualizar el ID para el próximo producto
-                textIdAddP.setText(String.valueOf(DataBase.getLastIdByProductList()));
+                textIdAddP.setText(String.valueOf(DataBase.getLastIdByProductList() + 1));
 
                 // Limpiar los campos de entrada
                 editTextText.setText("");

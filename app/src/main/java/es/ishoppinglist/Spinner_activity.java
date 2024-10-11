@@ -2,18 +2,15 @@ package es.ishoppinglist;
 
 
 
-import static dataBase.DataBase.getProductListNotPending;
-import static dataBase.DataBase.productList;
+
+import static dataBase.DataBase.getProductToList;
 
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,16 +19,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import adapters.Product_adapter;
+import dataBase.DataBase;
 import models.Product;
 
-public class Add_To_List_activity extends AppCompatActivity {
+public class Spinner_activity extends AppCompatActivity {
 
     Button addNewProduct, back;
-    Spinner spinner;
+    Spinner lspinner;
+    List<Product> productsToAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,34 +42,31 @@ public class Add_To_List_activity extends AppCompatActivity {
             return insets;
         });
 
-        spinner = findViewById(R.id.spinner);
-        Product_adapter adapter = new Product_adapter(Add_To_List_activity.this, 0, getProductListNotPending());
-        spinner.setAdapter(adapter);
-
-
+        addNewProduct = findViewById(R.id.buttonadd);
         back = findViewById(R.id.back);
+        lspinner = findViewById(R.id.spinner);
+
+        Product_adapter productAdapter = new Product_adapter(Spinner_activity.this, 0, DataBase.getProductToList());
+        lspinner.setAdapter(productAdapter);
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentToMain = new Intent(Add_To_List_activity.this, MainActivity.class);
+                Intent intentToMain = new Intent(Spinner_activity.this, MainActivity.class);
                 startActivity(intentToMain);
             }
         });
 
-        addNewProduct = findViewById(R.id.buttonadd);
         addNewProduct.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-                Product product = (Product) spinner.getSelectedItem();
+            public void onClick(View view) {
+                Product product = (Product) lspinner.getSelectedItem();
+                // Ponemos el estado a pendiente
                 product.setEstado_compra(true);
-                Toast.makeText(Add_To_List_activity.this, "Producto añadido a la lista", Toast.LENGTH_SHORT).show();
-                Intent intentToMain = new Intent(Add_To_List_activity.this, MainActivity.class);
-                startActivity(intentToMain);
-
+                Intent intent = new Intent(Spinner_activity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
-
 
     }
 }

@@ -1,7 +1,7 @@
 package es.ishoppinglist;
 
-import static dataBase.DataBase.getProductListPending;
 
+import static dataBase.DataBase.getShopingList;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnAddProduct;
     Button btnAddToList;
-
+    List<Product> pendingProducts;
 
 
     @Override
@@ -40,69 +40,53 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-
-
-
-
         });
 
-        List<Product> pendingProducts = new ArrayList<>();
+        pendingProducts = new ArrayList<>();
+        ListView lsShList = findViewById(R.id.lvShoProduct);
         btnAddProduct = findViewById(R.id.buttonaddProduct);
         btnAddToList = findViewById(R.id.buttonAddList);
-
-        ListView lsShList = findViewById(R.id.lvShoProduct);
         DataBase.initializeList();
+        Product_adapter adapter = new Product_adapter(MainActivity.this, 0, getShopingList());
 
-        Product_adapter adapter = new Product_adapter(MainActivity.this, 0, DataBase.getProductListPending());
         lsShList.setAdapter(adapter);
-
-
 
         btnAddToList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentToAddP= new Intent(MainActivity.this, Add_To_List_activity.class);
+                Intent intentToAddP = new Intent(MainActivity.this, Spinner_activity.class);
                 startActivity(intentToAddP);
             }
         });
 
-        // Define un listener para manejar los clics en los elementos del ListView.
-        lsShList.setOnItemClickListener((parent, view, position, id) -> {
-            // Obtiene la producto seleccionada en la posición del clic.
-            Product product = getProductListPending().get(position);;
-
-            // Muestra la información de la persona seleccionada en los logs para depuración.
-            Log.i("product click", product.toString());
-
-            // Crea un intent para lanzar la actividad de detalles (Detaill_Activity).
-            Intent detailIntent = new Intent(MainActivity.this, Activity_detaill.class);
-
-            // Agrega la persona seleccionada al intent como extra para pasarlo a la actividad de detalles.
-            detailIntent.putExtra("product", product);
-
-            // Inicia la actividad de detalles.
-            startActivity(detailIntent);
-        });
 
 
         btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intentToAddP= new Intent(MainActivity.this, Add_New_Product.class);
+                Intent intentToAddP = new Intent(MainActivity.this, Add_New_Product.class);
                 startActivity(intentToAddP);
             }
         });
 
+        // Accedemos a los objetos de la lista
+        lsShList.setOnItemClickListener((adapterView, view, i, l) -> {
+            Product product = DataBase.getShopingList().get(i);
 
-
-
-
-
-
-
-
-
-
+            Intent intentDetail = new Intent(MainActivity.this, Activity_detaill.class);
+            intentDetail.putExtra("product", product);
+            startActivity(intentDetail);
+        });
     }
+
+
 }
+
+
+
+
+
+
+
+
+

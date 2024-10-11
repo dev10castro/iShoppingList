@@ -66,18 +66,18 @@ public class Activity_detaill extends AppCompatActivity {
 
             }
         });
-/*
+
 
         editProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailProductActivity.this, EditProductActivity.class);
-                intent.putExtra("productId", product.getId());
+                Intent intent = new Intent(Activity_detaill.this, EditProductActivity.class);
+                intent.putExtra("productId", p.getId());
                 startActivity(intent);
             }
         });
 
-*/
+
 
 
 

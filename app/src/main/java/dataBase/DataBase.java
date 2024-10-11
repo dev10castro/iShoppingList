@@ -1,5 +1,6 @@
 package dataBase;
 
+import android.content.Context;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -45,10 +46,10 @@ public class DataBase {
      *
      * @return - Lista de productos pendientes de compra
      */
-    public static ArrayList<Product> getProductListPending() {
+    public static ArrayList<Product> getShopingList() {
         ArrayList<Product> productsPending = new ArrayList<>();
         for (Product product : productList) {
-            if (product.getEstado_compra()) {
+            if (!product.getEstado_compra()) {
                 productsPending.add(product);
             }
         }
@@ -60,10 +61,10 @@ public class DataBase {
      *
      * @return - Lista de productos no pendientes de compra
      */
-    public static ArrayList<Product> getProductListNotPending() {
+    public static ArrayList<Product> getProductToList() {
         ArrayList<Product> productsNotPending = new ArrayList<>();
         for (Product product : productList) {
-            if (!product.getEstado_compra()) {
+            if (product.getEstado_compra()) {
                 productsNotPending.add(product);
             }
         }
@@ -103,38 +104,26 @@ public class DataBase {
      * @return
      */
     public static int getLastIdByProductList() {
-        int id = 1;
-        for (Product product : productList) {
-            if (product.getId() == id) {
-                id++;
-            } else {
-                return id;
-            }
-        }
+        int id = productList.size();
+
         return id;
     }
 
-    public static void addProduct(Product product, Add_New_Product view) {
+    public static void addProduct(Product product, Context context) {
 
-        for (Product p : productList) {
-            if (p.getId() == product.getId()) {
-                Toast toas = new Toast(view);
-                toas.setText("Ya existe un producto con ese id");
-                toas.show();
-                return;
-            }
-            if (product.getNombre_producto().equalsIgnoreCase(p.getNombre_producto())) {
-                Toast toas = new Toast(view);
-                toas.setText("Ya existe un producto con ese nombre");
-                toas.show();
-                return;
-            }
+    for (Product p : productList) {
+        if (p.getId() == product.getId()) {
+            Toast.makeText(context, "Ya existe un producto con ese id", Toast.LENGTH_SHORT).show();
+            return;
         }
-
-        Toast toast = new Toast(view);
-        toast.setText("Producto añadido correctamente");
-        toast.show();
-        productList.add(product);
+        if (product.getNombre_producto().equalsIgnoreCase(p.getNombre_producto())) {
+            Toast.makeText(context, "Ya existe un producto con ese nombre", Toast.LENGTH_SHORT).show();
+            return;
+        }
     }
+
+    Toast.makeText(context, "Producto añadido correctamente", Toast.LENGTH_SHORT).show();
+    productList.add(product);
+}
 
 }

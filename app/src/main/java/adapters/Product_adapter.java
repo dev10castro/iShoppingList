@@ -1,7 +1,7 @@
 package adapters;
 
 import static dataBase.DataBase.productList;
-import static dataBase.DataBase.purchasedProductList;
+
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -36,7 +36,7 @@ public class Product_adapter extends ArrayAdapter<Product> {
         if(convertView==null){
             convertView = View.inflate(getContext(), R.layout.item_product, null);
         }
-        Product p = this.products.get(position);
+        Product p = getItem(position);
 
         TextView tvName = convertView.findViewById(R.id.textname);
         TextView tvInfo = convertView.findViewById(R.id.textNoteInfo);
@@ -55,7 +55,7 @@ public class Product_adapter extends ArrayAdapter<Product> {
     public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
 
         // Obtiene la persona en la posición actual desde la lista.
-        Product product = purchasedProductList.get(position);
+        Product product = productList.get(position);
 
         // Si convertView es nulo, infla una nueva vista desde el layout 'item_person' para el desplegable.
         if (convertView == null) {

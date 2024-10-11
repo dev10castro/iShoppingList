@@ -1,7 +1,7 @@
 package es.ishoppinglist;
 
 import static dataBase.DataBase.productList;
-import static dataBase.DataBase.purchasedProductList;
+
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -47,6 +47,7 @@ public class Detaill_activity extends AppCompatActivity {
 // Botón que se usará para enviar la persona seleccionada.
         addTolist = findViewById(R.id.buttonadd);
 
+
 // Obtiene el intent que lanzó esta actividad y recupera un objeto de tipo "Product".
         Intent intent = getIntent();
         Product p = (Product) intent.getSerializableExtra("product");
@@ -56,18 +57,37 @@ public class Detaill_activity extends AppCompatActivity {
 
 // Verifica que la lista de productos esté inicializada y no esté vacía antes de asignarla al adaptador.
         if (productList != null && !productList.isEmpty()) {
+
             // Crea un adaptador para el Spinner usando la lista de productos.
-            Product_adapter adapterP = new Product_adapter(Detaill_activity.this, 0, purchasedProductList);
+            Product_adapter adapterP = new Product_adapter(Detaill_activity.this, 0, DataBase.getPendingProducts());
             spProduct.setAdapter(adapterP);
+
+            // Configura el listener del botón "Agregar a la lista".
+            addTolist.setOnClickListener(v -> {
+                // Obtiene el producto seleccionado del Spinner.
+                Product selectedProduct = (Product) spProduct.getSelectedItem();
+
+                // Verifica que el producto seleccionado no sea nulo.
+                if (selectedProduct != null) {
+                    // Crea un intent para devolver el producto seleccionado.
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("selected_product", selectedProduct);
+
+                    // Establece el resultado como OK y adjunta el intent.
+                    setResult(RESULT_OK, resultIntent);
+
+                    // Finaliza la actividad y regresa a MainActivity.
+                    finish();
+                }
+            });
 
             // Si hay un producto recibido por el intent, encuentra su posición en la lista.
             if (p != null) {
                 int position = productList.indexOf(p);
                 if (position != -1) {
-                    // Selecciona el producto en el Spinner.
+                    // Selecciona el producto en el Spinner usando la posición encontrada.
                     spProduct.setSelection(position);
                 }
-
             }
 
         }

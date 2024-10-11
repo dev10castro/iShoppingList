@@ -57,6 +57,14 @@ public class Product implements Serializable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Product product = (Product) obj;
+        return id == product.id; // O compara otro atributo si es más relevante
+    }
+
+    @Override
     public String toString() {
         return "Producto{" +
                 "  id='" + id + '\'' +

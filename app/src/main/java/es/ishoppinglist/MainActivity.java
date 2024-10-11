@@ -1,11 +1,6 @@
 package es.ishoppinglist;
 
-import static dataBase.DataBase.inicializeList;
-import static dataBase.DataBase.initializePendingProducts;
-import static dataBase.DataBase.initializePurchasedProducts;
-import static dataBase.DataBase.pendingProductList;
-import static dataBase.DataBase.productList;
-import static dataBase.DataBase.purchasedProductList;
+import static dataBase.DataBase.getPurchasedProducts;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +15,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import adapters.Product_adapter;
+
+import dataBase.DataBase;
 import models.Product;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,24 +39,23 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+
+
+
+
         });
 
+        List<Product> pendingProducts = new ArrayList<>();
         btnAddProduct = findViewById(R.id.buttonaddProduct);
         btnAddToList = findViewById(R.id.buttonAddList);
 
         ListView lsShList = findViewById(R.id.lvShoProduct);
-        inicializeList();
-        initializePendingProducts();
-        initializePurchasedProducts();
+        DataBase.initializeList();
 
-        Product_adapter adapter = new Product_adapter(MainActivity.this, 0, pendingProductList);
-
-        Product p = pendingProductList.get(0);
-
-
+        Product_adapter adapter = new Product_adapter(MainActivity.this, 0, DataBase.getPurchasedProducts());
         lsShList.setAdapter(adapter);
 
-        Log.i("MainActivity", "onCreate: " + p.toString());
+
 
         btnAddToList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         // Define un listener para manejar los clics en los elementos del ListView.
         lsShList.setOnItemClickListener((parent, view, position, id) -> {
             // Obtiene la producto seleccionada en la posición del clic.
-            Product product = pendingProductList.get(position);
+            Product product = getPurchasedProducts().get(position);;
 
             // Muestra la información de la persona seleccionada en los logs para depuración.
             Log.i("product click", product.toString());
@@ -80,14 +79,19 @@ public class MainActivity extends AppCompatActivity {
             // Agrega la persona seleccionada al intent como extra para pasarlo a la actividad de detalles.
             detailIntent.putExtra("product", product);
 
-
-
-            detailIntent.putExtra("product", product);
             // Inicia la actividad de detalles.
             startActivity(detailIntent);
         });
 
-        //define un listener para seleccionar un producto del listview y te lleve a la pantalla detalle
+
+        btnAddProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intentToAddP= new Intent(MainActivity.this, Add_New_Product.class);
+                startActivity(intentToAddP);
+            }
+        });
 
 
 

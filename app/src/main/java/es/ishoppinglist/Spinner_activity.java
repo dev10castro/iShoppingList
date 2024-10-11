@@ -29,7 +29,7 @@ public class Spinner_activity extends AppCompatActivity {
 
     Button addNewProduct, back;
     Spinner lspinner;
-    List<Product> productsToAdd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -40,26 +40,34 @@ public class DataBase {
         productList.add(p11);
     }
 
-    // Método para obtener solo los productos pendientes de compra
-    public static List<Product> getPendingProducts() {
-        List<Product> pendingProducts = new ArrayList<>();
+    /**
+     * Método para obtener la lista de productos pendientes de compra
+     *
+     * @return - Lista de productos pendientes de compra
+     */
+    public static ArrayList<Product> getProductListPending() {
+        ArrayList<Product> productsPending = new ArrayList<>();
         for (Product product : productList) {
-            if (product.getEstado_compra() == false) {
-                pendingProducts.add(product);
+            if (product.getEstado_compra()) {
+                productsPending.add(product);
             }
         }
-        return pendingProducts;
+        return productsPending;
     }
 
-    // Método para obtener solo los productos ya comprados
-    public static List<Product> getPurchasedProducts() {
-        List<Product> purchasedProducts = new ArrayList<>();
+    /**
+     * Método para obtener la lista de productos no pendientes de compra
+     *
+     * @return - Lista de productos no pendientes de compra
+     */
+    public static ArrayList<Product> getProductListNotPending() {
+        ArrayList<Product> productsNotPending = new ArrayList<>();
         for (Product product : productList) {
-            if (product.getEstado_compra() == true) {
-                purchasedProducts.add(product);
+            if (!product.getEstado_compra()) {
+                productsNotPending.add(product);
             }
         }
-        return purchasedProducts;
+        return productsNotPending;
     }
 
     /**

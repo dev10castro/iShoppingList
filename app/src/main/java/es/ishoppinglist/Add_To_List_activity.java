@@ -1,8 +1,8 @@
 package es.ishoppinglist;
 
 
-import static dataBase.DataBase.getPendingProducts;
-import static dataBase.DataBase.getPurchasedProducts;
+
+import static dataBase.DataBase.getProductListNotPending;
 import static dataBase.DataBase.productList;
 
 
@@ -45,7 +45,7 @@ public class Add_To_List_activity extends AppCompatActivity {
         });
 
         spinner = findViewById(R.id.spinner);
-        Product_adapter adapter = new Product_adapter(Add_To_List_activity.this, 0, getPendingProducts());
+        Product_adapter adapter = new Product_adapter(Add_To_List_activity.this, 0, getProductListNotPending());
         spinner.setAdapter(adapter);
 
 

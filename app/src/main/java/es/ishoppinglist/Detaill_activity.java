@@ -59,7 +59,7 @@ public class Detaill_activity extends AppCompatActivity {
         if (productList != null && !productList.isEmpty()) {
 
             // Crea un adaptador para el Spinner usando la lista de productos.
-            Product_adapter adapterP = new Product_adapter(Detaill_activity.this, 0, DataBase.getPendingProducts());
+            Product_adapter adapterP = new Product_adapter(Detaill_activity.this, 0, DataBase.getProductListPending());
             spProduct.setAdapter(adapterP);
 
             // Configura el listener del botón "Agregar a la lista".

@@ -1,6 +1,7 @@
 package es.ishoppinglist;
 
-import static dataBase.DataBase.getPurchasedProducts;
+import static dataBase.DataBase.getProductListPending;
+
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         ListView lsShList = findViewById(R.id.lvShoProduct);
         DataBase.initializeList();
 
-        Product_adapter adapter = new Product_adapter(MainActivity.this, 0, DataBase.getPurchasedProducts());
+        Product_adapter adapter = new Product_adapter(MainActivity.this, 0, DataBase.getProductListPending());
         lsShList.setAdapter(adapter);
 
 
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         // Define un listener para manejar los clics en los elementos del ListView.
         lsShList.setOnItemClickListener((parent, view, position, id) -> {
             // Obtiene la producto seleccionada en la posición del clic.
-            Product product = getPurchasedProducts().get(position);;
+            Product product = getProductListPending().get(position);;
 
             // Muestra la información de la persona seleccionada en los logs para depuración.
             Log.i("product click", product.toString());

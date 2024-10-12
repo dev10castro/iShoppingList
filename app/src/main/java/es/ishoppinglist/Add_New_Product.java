@@ -41,7 +41,7 @@ public class Add_New_Product extends AppCompatActivity {
             return insets;
         });
 
-        // Inicialización de las vistas
+        // Inicialización de los componentes
         addProduct = findViewById(R.id.buttonAddPrDP);
         backToMain = findViewById(R.id.buttonBackToMain);
         textIdAddP = findViewById(R.id.textIdAddP);
@@ -50,14 +50,14 @@ public class Add_New_Product extends AppCompatActivity {
         switchAddP = findViewById(R.id.switchAddP);
 
         // Establecer el ID máximo en el TextView
-        textIdAddP.setText(String.valueOf(DataBase.getIdMax()));
+        textIdAddP.setText(String.valueOf(DataBase.getLastIdByProductList()));
 
         // Configuración del botón para añadir un producto
         addProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Product pAux = new Product();
-                pAux.setId(DataBase.getIdMax() + 1);
+                pAux.setId(DataBase.getLastIdByProductList());
                 pAux.setNombre_producto(editTextText.getText().toString());
                 pAux.setNota_info(editTextInfoAddP.getText().toString());
                 pAux.setEstado_compra(switchAddP.isChecked());
@@ -65,13 +65,16 @@ public class Add_New_Product extends AppCompatActivity {
                 // Log product details
                 Log.d("Add_New_Product", "Adding product: " + pAux.toString());
 
-                // Añadir el producto a la base de datos
-                DataBase.addProduct(pAux, Add_New_Product.this);
+                if (pAux.getNombre_producto().isEmpty()){
+                    Toast toas = new Toast(Add_New_Product.this);
+                    toas.setText("El nombre del producto no puede estar vacío");
+                    toas.show();
+                    return;
 
-                // Actualizar el ID para el próximo producto
-                textIdAddP.setText(String.valueOf(DataBase.getLastIdByProductList() + 1));
+                }
 
-                // Limpiar los campos de entrada
+                DataBase.addProduct(pAux,Add_New_Product.this);
+                textIdAddP.setText(String.valueOf(DataBase.getLastIdByProductList()));
                 editTextText.setText("");
                 editTextInfoAddP.setText("");
                 switchAddP.setChecked(false);

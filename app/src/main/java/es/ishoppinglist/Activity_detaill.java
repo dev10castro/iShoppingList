@@ -71,7 +71,7 @@ public class Activity_detaill extends AppCompatActivity {
         editProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_detaill.this, EditProductActivity.class);
+                Intent intent = new Intent(Activity_detaill.this, Edit_Activity.class);
                 intent.putExtra("productId", p.getId());
                 startActivity(intent);
             }

@@ -62,7 +62,7 @@ public class Spinner_activity extends AppCompatActivity {
             public void onClick(View view) {
                 Product product = (Product) lspinner.getSelectedItem();
                 // Ponemos el estado a pendiente
-                product.setEstado_compra(true);
+                product.setEstado_compra(false);
                 Intent intent = new Intent(Spinner_activity.this, MainActivity.class);
                 startActivity(intent);
             }

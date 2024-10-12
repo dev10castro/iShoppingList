@@ -33,47 +33,38 @@ public class Product_adapter extends ArrayAdapter<Product> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        Product p = this.products.get(position);
 
-        if(convertView==null){
-            convertView = View.inflate(getContext(), R.layout.item_product, null);
-        }
-        Product p = getItem(position);
-
-        TextView tvName = convertView.findViewById(R.id.textname);
-        TextView tvInfo = convertView.findViewById(R.id.textNoteInfo);
-
-
-        tvName.setText(p.getNombre_producto());
-        tvInfo.setText(p.getNota_info());
-
-
-
-        return convertView;
-    }
-
-    // Método para crear y devolver la vista de cada elemento desplegable del Spinner.
-    @Override
-    public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
-
-        products = DataBase.getProductToList();
-        // Obtiene la persona en la posición actual desde la lista.
-        Product product = products.get(position);
-
-        // Si convertView es nulo, infla una nueva vista desde el layout 'item_person' para el desplegable.
+        // En caso de que no se haya creado la vista la creamos nostros
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_product, parent, false);
         }
 
-        // Obtiene la referencia al TextView que mostrará el nombre completo de la persona.
+        // Obtenemos los componentes
         TextView tvName = convertView.findViewById(R.id.textname);
         TextView tvInfo = convertView.findViewById(R.id.textNoteInfo);
 
-        // Asigna el nombre y apellido de la persona al TextView.
+        // Modificamoslos atributos de los componentes
+        tvName.setText(p.getNombre_producto());
+        tvInfo.setText("Pulsa para detalle de producto"); // Convierte el ID a String
+        return convertView;
+    }
+
+
+    // Método para crear y devolver la vista de cada elemento desplegable del Spinner.
+    @Override
+    public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        Product product = DataBase.getProductToList().get(position);
+        // En caso de que no se haya creado la vista la creamos nostros
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_product, parent, false);
+        }
+        // Obtenemos los componentes
+        TextView tvName = convertView.findViewById(R.id.textname);
+        TextView tvInfo = convertView.findViewById(R.id.textNoteInfo);
+        // Modificamoslos atributos de los componentes
         tvName.setText(product.getNombre_producto());
-        tvInfo.setText(product.getNota_info());
-
-
-        // Devuelve la vista actualizada para el elemento desplegable.
+        tvInfo.setText(String.valueOf(product.getNota_info()));
         return convertView;
     }
 }

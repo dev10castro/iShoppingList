@@ -14,31 +14,34 @@ public class DataBase {
     public static List<Product> productList;
 
     public static void initializeList() {
-        productList = new ArrayList<>();
 
-        Product p1 = new Product(1, "Leche Descremada", "Leche descremada 1L, ideal para dietas bajas en grasa.", true);
-        Product p2 = new Product(2, "Pan Integral", "Pan de trigo integral con alto contenido en fibra.", false);
-        Product p3 = new Product(3, "Queso Gouda", "Queso gouda holandés, suave y cremoso. Paquete de 200g.", true);
-        Product p4 = new Product(4, "Avena", "Cereal de avena con frutos rojos, paquete de 500g.", false);
-        Product p5 = new Product(6, "Jabón Líquido", "Jabón líquido antibacterial, fragancia a lavanda, 400ml.", false);
-        Product p6 = new Product(7, "Spaghetti", "Pasta de trigo duro, paquete de 1kg.", true);
-        Product p7 = new Product(8, "Tomate Triturado", "Tomate triturado natural, lata de 400g.", false);
-        Product p8 = new Product(9, "Café Molido", "Café molido 100% arábica, paquete de 250g.", true);
-        Product p9 = new Product(10, "Azúcar Moreno", "Azúcar moreno orgánico, bolsa de 1kg.", false);
-        Product p10 = new Product(11, "Yogur Griego", "Yogur griego natural, alto en proteínas, 500g.", true);
-        Product p11 = new Product(12, "Plátanos", "De Canarias", true);
+        if(productList==null) {
+            productList = new ArrayList<>();
 
-        productList.add(p1);
-        productList.add(p2);
-        productList.add(p3);
-        productList.add(p4);
-        productList.add(p5);
-        productList.add(p6);
-        productList.add(p7);
-        productList.add(p8);
-        productList.add(p9);
-        productList.add(p10);
-        productList.add(p11);
+            Product p1 = new Product(1, "Leche Descremada", "Leche descremada 1L, ideal para dietas bajas en grasa.", true);
+            Product p2 = new Product(2, "Pan Integral", "Pan de trigo integral con alto contenido en fibra.", false);
+            Product p3 = new Product(3, "Queso Gouda", "Queso gouda holandés, suave y cremoso. Paquete de 200g.", true);
+            Product p4 = new Product(4, "Avena", "Cereal de avena con frutos rojos, paquete de 500g.", false);
+            Product p5 = new Product(5, "Jabón Líquido", "Jabón líquido antibacterial, fragancia a lavanda, 400ml.", false);
+            Product p6 = new Product(6, "Spaghetti", "Pasta de trigo duro, paquete de 1kg.", true);
+            Product p7 = new Product(7, "Tomate Triturado", "Tomate triturado natural, lata de 400g.", false);
+            Product p8 = new Product(8, "Café Molido", "Café molido 100% arábica, paquete de 250g.", true);
+            Product p9 = new Product(9, "Azúcar Moreno", "Azúcar moreno orgánico, bolsa de 1kg.", false);
+            Product p10 = new Product(10, "Yogur Griego", "Yogur griego natural, alto en proteínas, 500g.", true);
+            Product p11 = new Product(11, "Plátanos", "De Canarias", true);
+
+            productList.add(p1);
+            productList.add(p2);
+            productList.add(p3);
+            productList.add(p4);
+            productList.add(p5);
+            productList.add(p6);
+            productList.add(p7);
+            productList.add(p8);
+            productList.add(p9);
+            productList.add(p10);
+            productList.add(p11);
+        }
     }
 
     /**
@@ -86,44 +89,50 @@ public class DataBase {
         return new Product();
     }
 
-    /*
-    metodo para devolver el valor de id maxima de la lista
-     */
 
-    public static int getIdMax() {
-        int idMax = 0;
-        for (Product product : productList) {
-            if (product.getId() > idMax) {
-                idMax = product.getId();
-            }
-        }
-        return idMax;
-    }
     /**
      * Método para obtener el último id de la lista de productos
      * @return
      */
     public static int getLastIdByProductList() {
-        int id = productList.size();
-
+        int id = 1;
+        for (Product product : productList) {
+            if (product.getId() == id) {
+                id++;
+            } else {
+                return id;
+            }
+        }
         return id;
     }
 
-    public static void addProduct(Product product, Context context) {
+    /**
+     * Funcion que sirve para añadir un producto a la lista de productos
+     *
+     * @param product - Producto que vamos a añadir
+     * @param view    - Vista actual
+     */
+    public static void addProduct(Product product, Add_New_Product view) {
 
-    for (Product p : productList) {
-        if (p.getId() == product.getId()) {
-            Toast.makeText(context, "Ya existe un producto con ese id", Toast.LENGTH_SHORT).show();
-            return;
+        for (Product p : productList) {
+            if (p.getId() == product.getId()) {
+                Toast toas = new Toast(view);
+                toas.setText("Ya existe un producto con ese id");
+                toas.show();
+                return;
+            }
+            if (product.getNombre_producto().equalsIgnoreCase(p.getNombre_producto())) {
+                Toast toas = new Toast(view);
+                toas.setText("Ya existe un producto con ese nombre");
+                toas.show();
+                return;
+            }
         }
-        if (product.getNombre_producto().equalsIgnoreCase(p.getNombre_producto())) {
-            Toast.makeText(context, "Ya existe un producto con ese nombre", Toast.LENGTH_SHORT).show();
-            return;
-        }
+
+        Toast toast = new Toast(view);
+        toast.setText("Producto añadido correctamente");
+        toast.show();
+        productList.add(product);
     }
-
-    Toast.makeText(context, "Producto añadido correctamente", Toast.LENGTH_SHORT).show();
-    productList.add(product);
-}
 
 }

@@ -115,9 +115,10 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="1dp">
+
         <Button
             android:id="@+id/EditSave"
-            android:layout_width="89dp"
+            android:layout_width="126dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"

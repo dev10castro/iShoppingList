@@ -9,15 +9,25 @@ import java.util.List;
 import es.ishoppinglist.Add_New_Product;
 import models.Product;
 
+/**
+ * Clase DataBase que simula el acceso a una base de datos.
+ * Contiene métodos estáticos para gestionar una lista de productos,
+ * como obtener productos por estado de compra, añadir nuevos productos y obtener productos por ID.
+ */
 public class DataBase {
 
+    // Lista estática de productos que representa la "base de datos"
     public static List<Product> productList;
 
+    /**
+     * Inicializa la lista de productos si aún no está creada.
+     * Este método carga una lista de productos con valores predefinidos.
+     */
     public static void initializeList() {
-
-        if(productList==null) {
+        if(productList == null) {
             productList = new ArrayList<>();
 
+            // Se añaden productos predefinidos a la lista
             Product p1 = new Product(1, "Leche Descremada", "Leche descremada 1L, ideal para dietas bajas en grasa.", true);
             Product p2 = new Product(2, "Pan Integral", "Pan de trigo integral con alto contenido en fibra.", false);
             Product p3 = new Product(3, "Queso Gouda", "Queso gouda holandés, suave y cremoso. Paquete de 200g.", true);
@@ -30,6 +40,7 @@ public class DataBase {
             Product p10 = new Product(10, "Yogur Griego", "Yogur griego natural, alto en proteínas, 500g.", true);
             Product p11 = new Product(11, "Plátanos", "De Canarias", true);
 
+            // Se añaden los productos a la lista
             productList.add(p1);
             productList.add(p2);
             productList.add(p3);
@@ -45,9 +56,9 @@ public class DataBase {
     }
 
     /**
-     * Método para obtener la lista de productos pendientes de compra
+     * Obtiene la lista de productos pendientes de compra (estado 'pendiente').
      *
-     * @return - Lista de productos pendientes de compra
+     * @return Una lista de productos cuyo estado de compra es false (pendiente).
      */
     public static ArrayList<Product> getShopingList() {
         ArrayList<Product> productsPending = new ArrayList<>();
@@ -60,9 +71,9 @@ public class DataBase {
     }
 
     /**
-     * Método para obtener la lista de productos no pendientes de compra
+     * Obtiene la lista de productos comprados (estado 'no pendiente').
      *
-     * @return - Lista de productos no pendientes de compra
+     * @return Una lista de productos cuyo estado de compra es true (comprado).
      */
     public static ArrayList<Product> getProductToList() {
         ArrayList<Product> productsNotPending = new ArrayList<>();
@@ -75,10 +86,10 @@ public class DataBase {
     }
 
     /**
-     * Método para obtener un producto por su id
+     * Busca y devuelve un producto según su ID.
      *
-     * @param id - Id del producto
-     * @return - Objeto Product
+     * @param id El ID del producto que se desea buscar.
+     * @return El producto con el ID especificado o un nuevo objeto Product vacío si no se encuentra.
      */
     public static Product getProductById(int id) {
         for (Product product : productList) {
@@ -86,15 +97,16 @@ public class DataBase {
                 return product;
             }
         }
-        return new Product();
+        return new Product(); // Devuelve un producto vacío si no se encuentra
     }
 
-
     /**
-     * Método para obtener el último id de la lista de productos
-     * @return
+     * Obtiene el siguiente ID disponible para añadir un nuevo producto.
+     *
+     * @return El siguiente ID que se puede asignar a un nuevo producto.
      */
-    public static int getLastIdByProductList() {
+    public static int getLastId() {
+
         int id = 1;
         for (Product product : productList) {
             if (product.getId() == id) {
@@ -107,32 +119,33 @@ public class DataBase {
     }
 
     /**
-     * Funcion que sirve para añadir un producto a la lista de productos
+     * Añade un nuevo producto a la lista si no existe un producto con el mismo ID o nombre.
+     * Si ya existe un producto con el mismo ID o nombre, muestra un mensaje Toast indicando el error.
      *
-     * @param product - Producto que vamos a añadir
-     * @param view    - Vista actual
+     * @param product El producto que se desea añadir.
+     * @param view    La vista actual, usada para mostrar los mensajes Toast.
      */
     public static void addProduct(Product product, Add_New_Product view) {
 
         for (Product p : productList) {
             if (p.getId() == product.getId()) {
-                Toast toas = new Toast(view);
-                toas.setText("Ya existe un producto con ese id");
-                toas.show();
+                Toast toast = new Toast(view);
+                toast.setText("Ya existe un producto con ese id");
+                toast.show();
                 return;
             }
             if (product.getNombre_producto().equalsIgnoreCase(p.getNombre_producto())) {
-                Toast toas = new Toast(view);
-                toas.setText("Ya existe un producto con ese nombre");
-                toas.show();
+                Toast toast = new Toast(view);
+                toast.setText("Ya existe un producto con ese nombre");
+                toast.show();
                 return;
             }
         }
 
+        // Si no existen conflictos, añade el producto y muestra un mensaje de éxito
         Toast toast = new Toast(view);
-        toast.setText("Producto añadido correctamente");
+        toast.setText("Producto añadido!!");
         toast.show();
         productList.add(product);
     }
-
 }

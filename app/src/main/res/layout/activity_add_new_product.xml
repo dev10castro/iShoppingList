@@ -6,146 +6,137 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
-    tools:context=".Add_New_Product"
-    >
+    tools:context=".Add_New_Product">
 
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <!-- Envolvemos el contenido principal en un ScrollView -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:ignore="MissingConstraints">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Detalle de producto"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            android:textStyle="bold|italic" />
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/linearLayoutBottom">
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="Id de producto:"
+                android:text="Añadir producto"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textStyle="bold|italic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Id de producto:"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textIdAddP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text=""
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textNmaeAddP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Nombre de Producto:"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
+            <EditText
+                android:id="@+id/editTextText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textSize="20sp"
+                android:inputType="text"
+                android:hint="Name"/>
+
             <TextView
-                android:id="@+id/textIdAddP"
-                android:layout_width="wrap_content"
+                android:id="@+id/textVi"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text=""
-                android:textSize="25sp" />
+                android:layout_marginTop="5dp"
+                android:text="Info de Producto:"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editTextInfoAddP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textSize="20sp"
+                android:inputType="text"
+                android:hint="Info" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Estado de Producto: "
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <Switch
+                android:id="@+id/switchAddP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Añadir también al sistema" />
         </LinearLayout>
+    </ScrollView>
 
-        <TextView
-            android:id="@+id/textNmaeAddP"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginTop="5dp"
-            android:text="Nombre de Producto:"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/editTextText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:textSize="20sp"
-            android:inputType="text"
-            android:hint="Name"/>
-
-        <TextView
-            android:id="@+id/textVi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginTop="5dp"
-            android:text="Info de Producto:"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/editTextInfoAddP"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:textSize="20sp"
-            android:inputType="text"
-            android:hint="Info" />
-
-        <TextView
-
-            android:id="@+id/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginTop="5dp"
-            android:text="Estado de Producto: "
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:orientation="horizontal">
-
-        </LinearLayout>
-
-    </LinearLayout>
-
+    <!-- Botones de la parte inferior más grandes -->
     <LinearLayout
+        android:id="@+id/linearLayoutBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="1dp">
+        app:layout_constraintBottom_toBottomOf="parent">
+
         <Button
             android:id="@+id/buttonAddPrDP"
-            android:layout_width="89dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
-            android:height="80dp"
             android:backgroundTint="@color/green"
             android:text="Añadir producto"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            />
+
         <Button
             android:id="@+id/buttonBackToMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
-            android:height="80dp"
             android:backgroundTint="@color/green"
             android:text="Volver"
             android:textSize="15sp" />
 
-
     </LinearLayout>
-
-    <Switch
-        android:id="@+id/switchAddP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Añadir tambien al sistema"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        tools:layout_editor_absoluteX="78dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,10 +22,7 @@ import adapters.Product_adapter;
 import dataBase.DataBase;
 import models.Product;
 
-/**
- * Clase MainActivity que sirve como pantalla principal de la aplicación.
- * Muestra una lista de productos pendientes de compra y proporciona opciones para añadir nuevos productos o ver detalles de los existentes.
- */
+
 public class MainActivity extends AppCompatActivity {
 
     // Botones para añadir productos o ir a la lista de productos para añadir a la compra
@@ -35,23 +32,12 @@ public class MainActivity extends AppCompatActivity {
     // Lista de productos pendientes
     List<Product> pendingProducts;
 
-    /**
-     * Método onCreate, llamado al crear la actividad.
-     * Inicializa la interfaz de usuario, configura los botones, y carga la lista de productos pendientes de compra.
-     *
-     * @param savedInstanceState El estado de la actividad previamente guardado, si existe.
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Habilita el modo Edge-to-Edge para una experiencia de pantalla completa
         EdgeToEdge.enable(this);
-
-        // Establece el layout de la actividad
         setContentView(R.layout.activity_main);
-
-        // Ajustes para manejar los márgenes de la vista principal con respecto a las barras del sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

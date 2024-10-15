@@ -18,10 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 import dataBase.DataBase;
 import models.Product;
 
-/**
- * Clase Edit_Activity que permite al usuario editar los detalles de un producto existente.
- * Proporciona un formulario donde el usuario puede modificar el nombre, la información y el estado de compra del producto.
- */
+
 public class Edit_Activity extends AppCompatActivity {
 
     // Elementos de la interfaz para editar los detalles del producto
@@ -30,23 +27,12 @@ public class Edit_Activity extends AppCompatActivity {
     Button save, back;
     TextView idEdit;
 
-    /**
-     * Método onCreate, llamado al crear la actividad.
-     * Inicializa la interfaz de usuario y asigna los valores del producto seleccionado a los campos correspondientes.
-     *
-     * @param savedInstanceState El estado de la actividad previamente guardado, si existe.
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Habilita el modo Edge-to-Edge para una experiencia de pantalla completa
         EdgeToEdge.enable(this);
-
-        // Establece el layout de la actividad
         setContentView(R.layout.activity_edit);
-
-        // Ajustes para manejar los márgenes de la vista principal con respecto a las barras del sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

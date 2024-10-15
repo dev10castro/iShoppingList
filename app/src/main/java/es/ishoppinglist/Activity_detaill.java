@@ -16,10 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import models.Product;
 
-/**
- * Clase Activity_detaill que muestra los detalles de un producto seleccionado.
- * Esta actividad muestra información detallada del producto como el nombre, estado de compra y más.
- */
+
 public class Activity_detaill extends AppCompatActivity {
 
     // Botones para editar el producto y volver a la actividad principal
@@ -29,23 +26,12 @@ public class Activity_detaill extends AppCompatActivity {
     // TextViews para mostrar los detalles del producto
     TextView tvname, tvInfo, tvEstado, tvId;
 
-    /**
-     * Método onCreate, llamado al crear la actividad.
-     * Configura la interfaz de usuario, recibe los datos del producto y define las acciones de los botones.
-     *
-     * @param savedInstanceState El estado de la actividad previamente guardado, si existe.
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Habilita el modo Edge-to-Edge para mejorar la experiencia de pantalla completa
         EdgeToEdge.enable(this);
-
-        // Establece el diseño de la actividad
         setContentView(R.layout.activity_detaill);
-
-        // Configura los márgenes de la vista principal para adaptarse a las barras del sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

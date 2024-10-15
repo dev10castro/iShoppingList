@@ -18,21 +18,12 @@ import dataBase.DataBase;
 import es.ishoppinglist.R;
 import models.Product;
 
-/**
- * Adaptador que maneja la visualización de objetos Product en un ListView o Spinner.
- * Este adaptador se utiliza para vincular los datos de los productos a las vistas en formato lista o desplegable.
- */
+
 public class Product_adapter extends ArrayAdapter<Product> {
 
     private List<Product> products; // Lista de objetos Product que se mostrarán
 
-    /**
-     * Constructor del Product_adapter.
-     *
-     * @param context  El contexto actual.
-     * @param resource El ID del recurso de diseño para usar al instanciar las vistas.
-     * @param products La lista de productos que se va a representar en el ListView o Spinner.
-     */
+
     public Product_adapter(@NonNull Context context, int resource, @NonNull List<Product> products) {
         super(context, resource, products);
         this.products = products;

@@ -20,10 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 import dataBase.DataBase;
 import models.Product;
 
-/**
- * Clase Add_New_Product que permite al usuario añadir un nuevo producto a la lista.
- * Proporciona un formulario para introducir el nombre, la descripción y el estado de compra del producto.
- */
+
 public class Add_New_Product extends AppCompatActivity {
 
     // Botones para añadir el producto y regresar a la pantalla principal
@@ -34,23 +31,12 @@ public class Add_New_Product extends AppCompatActivity {
     private EditText editTextText, editTextInfoAddP;
     private Switch switchAddP;
 
-    /**
-     * Método onCreate, llamado al crear la actividad.
-     * Configura la interfaz de usuario y define las acciones de los botones.
-     *
-     * @param savedInstanceState El estado de la actividad previamente guardado, si existe.
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Habilita el modo Edge-to-Edge para una experiencia de pantalla completa
         EdgeToEdge.enable(this);
-
-        // Establece el layout de la actividad
         setContentView(R.layout.activity_add_new_product);
-
-        // Ajustes para manejar los márgenes de la vista principal con respecto a las barras del sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

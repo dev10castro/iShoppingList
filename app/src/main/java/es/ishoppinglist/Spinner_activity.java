@@ -19,10 +19,10 @@ import adapters.Product_adapter;
 import dataBase.DataBase;
 import models.Product;
 
-/**
- * Clase Spinner_activity que permite al usuario seleccionar productos desde un Spinner y añadirlos a la lista de compras.
- * La actividad también ofrece la opción de regresar a la pantalla principal sin realizar cambios.
- */
+
+ // Clase Spinner_activity que permite al usuario seleccionar productos desde un Spinner y añadirlos a la lista de compras.
+ //La actividad también ofrece la opción de regresar a la pantalla principal sin realizar cambios.
+
 public class Spinner_activity extends AppCompatActivity {
 
     // Botones para añadir el producto seleccionado o volver a la pantalla principal
@@ -31,24 +31,12 @@ public class Spinner_activity extends AppCompatActivity {
     // Spinner para mostrar la lista de productos disponibles para agregar a la lista de compras
     Spinner lspinner;
 
-    /**
-     * Método onCreate, llamado al crear la actividad.
-     * Configura la interfaz de usuario, inicializa el Spinner con los productos disponibles
-     * y define las acciones de los botones.
-     *
-     * @param savedInstanceState El estado de la actividad previamente guardado, si existe.
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Habilita el modo Edge-to-Edge para una experiencia de pantalla completa
         EdgeToEdge.enable(this);
-
-        // Establece el layout de la actividad
         setContentView(R.layout.activity_add_to_list);
-
-        // Ajustes para manejar los márgenes de la vista principal con respecto a las barras del sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

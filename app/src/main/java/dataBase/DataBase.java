@@ -9,20 +9,13 @@ import java.util.List;
 import es.ishoppinglist.Add_New_Product;
 import models.Product;
 
-/**
- * Clase DataBase que simula el acceso a una base de datos.
- * Contiene métodos estáticos para gestionar una lista de productos,
- * como obtener productos por estado de compra, añadir nuevos productos y obtener productos por ID.
- */
+
 public class DataBase {
 
     // Lista estática de productos que representa la "base de datos"
     public static List<Product> productList;
 
-    /**
-     * Inicializa la lista de productos si aún no está creada.
-     * Este método carga una lista de productos con valores predefinidos.
-     */
+
     public static void initializeList() {
         if(productList == null) {
             productList = new ArrayList<>();

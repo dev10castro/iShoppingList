@@ -13,7 +13,7 @@ public class ActivitySplash extends AppCompatActivity {
 
         setContentView(R.layout.layout_splash);
 
-        // Tiempo de espera (por ejemplo, 3 segundos)
+// Activity splash para que sea la actividad principal al iniciarse la app. (se configura en  androidmanifest)
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -22,6 +22,7 @@ public class ActivitySplash extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 3000); // 3000 ms = 3 segundos
+        }, 3000); // aqui se define el tiempo de duración de la pantalla de inicio
     }
 }
+

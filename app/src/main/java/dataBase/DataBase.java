@@ -17,21 +17,21 @@ public class DataBase {
 
 
     public static void initializeList() {
-        if(productList == null) {
+        if (productList == null) {
             productList = new ArrayList<>();
 
             // Se añaden productos predefinidos a la lista
-            Product p1 = new Product(1, "Leche Descremada", "Leche descremada 1L, ideal para dietas bajas en grasa.", true);
-            Product p2 = new Product(2, "Pan Integral", "Pan de trigo integral con alto contenido en fibra.", false);
-            Product p3 = new Product(3, "Queso Gouda", "Queso gouda holandés, suave y cremoso. Paquete de 200g.", true);
-            Product p4 = new Product(4, "Avena", "Cereal de avena con frutos rojos, paquete de 500g.", false);
-            Product p5 = new Product(5, "Jabón Líquido", "Jabón líquido antibacterial, fragancia a lavanda, 400ml.", false);
-            Product p6 = new Product(6, "Spaghetti", "Pasta de trigo duro, paquete de 1kg.", true);
-            Product p7 = new Product(7, "Tomate Triturado", "Tomate triturado natural, lata de 400g.", false);
-            Product p8 = new Product(8, "Café Molido", "Café molido 100% arábica, paquete de 250g.", true);
-            Product p9 = new Product(9, "Azúcar Moreno", "Azúcar moreno orgánico, bolsa de 1kg.", false);
-            Product p10 = new Product(10, "Yogur Griego", "Yogur griego natural, alto en proteínas, 500g.", true);
-            Product p11 = new Product(11, "Plátanos", "De Canarias", true);
+            Product p1 = new Product(1, "Leche Descremada", "Leche descremada 1L, ideal para dietas bajas en grasa.", true, true, false);
+            Product p2 = new Product(2, "Pan Integral", "Pan de trigo integral con alto contenido en fibra.", false, false, true);
+            Product p3 = new Product(3, "Queso Gouda", "Queso gouda holandés, suave y cremoso. Paquete de 200g.", true, true, false);
+            Product p4 = new Product(4, "Avena", "Cereal de avena con frutos rojos, paquete de 500g.", false, false, true);
+            Product p5 = new Product(5, "Jabón Líquido", "Jabón líquido antibacterial, fragancia a lavanda, 400ml.", false, false, false);
+            Product p6 = new Product(6, "Spaghetti", "Pasta de trigo duro, paquete de 1kg.", true, false, true);
+            Product p7 = new Product(7, "Tomate Triturado", "Tomate triturado natural, lata de 400g.", false, false, false);
+            Product p8 = new Product(8, "Café Molido", "Café molido 100% arábica, paquete de 250g.", true, false, false);
+            Product p9 = new Product(9, "Azúcar Moreno", "Azúcar moreno orgánico, bolsa de 1kg.", false, false, false);
+            Product p10 = new Product(10, "Yogur Griego", "Yogur griego natural, alto en proteínas, 500g.", true, true, false);
+            Product p11 = new Product(11, "Plátanos", "De Canarias", true, false, false);
 
             // Se añaden los productos a la lista
             productList.add(p1);
@@ -141,4 +141,32 @@ public class DataBase {
         toast.show();
         productList.add(product);
     }
+
+    /**
+     * metodo para seleccionar los productos con lactosa
+     */
+    public static ArrayList<Product> getLactosaList() {
+        ArrayList<Product> productsLactosa = new ArrayList<>();
+        for (Product product : getShopingList()) {
+            if (product.isLactosa()) {
+                productsLactosa.add(product);
+            }
+        }
+        return productsLactosa;
+    }
+
+    /**
+     * metodo para seleccionar los productos con gluten
+     */
+    public static ArrayList<Product> getGlutenList() {
+        ArrayList<Product> productsGluten = new ArrayList<>();
+        for (Product product : getShopingList()) {
+            if (product.isGluten()) {
+                productsGluten.add(product);
+            }
+        }
+        return productsGluten;
+    }
+
+
 }

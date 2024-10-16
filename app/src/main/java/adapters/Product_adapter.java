@@ -2,6 +2,7 @@ package adapters;
 
 import static dataBase.DataBase.productList;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import java.util.List;
 
@@ -44,9 +46,25 @@ public class Product_adapter extends ArrayAdapter<Product> {
         // Obtiene el producto en la posición actual
         Product p = this.products.get(position);
 
-        // Si convertView es nulo, infla una nueva vista desde el recurso de diseño
+        // Si convertView es nulo, infla una nueva vista desde el recurso de diseño y segun el producto muestra un color u otro
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_product, parent, false);
+            if(p.isLactosa()){
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_product_lactosa, parent, false);
+
+            } else if (p.isGluten()) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_product_gluten, parent, false);
+
+
+            }else{
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_product, parent, false);
+
+            }
+
+        if(p.isGluten() && p.isLactosa()){
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_product_gyl, parent, false);
+        }
+
+
         }
 
         // Recupera los componentes UI de la vista inflada
@@ -68,6 +86,7 @@ public class Product_adapter extends ArrayAdapter<Product> {
      * @param parent      El ViewGroup al que eventualmente se adjuntará esta vista.
      * @return La vista correspondiente a los datos en la posición especificada en el desplegable.
      */
+
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         // Obtiene el producto de la base de datos en la posición actual
@@ -75,7 +94,18 @@ public class Product_adapter extends ArrayAdapter<Product> {
 
         // Si convertView es nulo, infla una nueva vista desde el recurso de diseño
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_product, parent, false);
+            if(product.isLactosa()){
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_product_lactosa, parent, false);
+
+            } else if (product.isGluten()) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_product_gluten, parent, false);
+                //ponemos color de fondo
+
+            }else{
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_product, parent, false);
+            }
+
+
         }
 
         // Recupera los componentes UI de la vista inflada

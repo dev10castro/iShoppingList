@@ -1,13 +1,17 @@
 package es.ishoppinglist;
 
+import static dataBase.DataBase.getProductToList;
 import static dataBase.DataBase.getShopingList;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     // Botones para añadir productos o ir a la lista de productos para añadir a la compra
     Button btnAddProduct;
     Button btnAddToList;
-
+    Spinner spfilter;
     // Lista de productos pendientes
     List<Product> pendingProducts;
 
@@ -49,13 +53,50 @@ public class MainActivity extends AppCompatActivity {
         ListView lsShList = findViewById(R.id.lvShoProduct);
         btnAddProduct = findViewById(R.id.buttonaddProduct);
         btnAddToList = findViewById(R.id.buttonAddList);
-
+        spfilter = findViewById(R.id.spinnerFiltro);
         // Inicializa la base de datos de productos si aún no se ha hecho
         DataBase.initializeList();
 
         // Crea un adaptador para mostrar los productos pendientes de compra en la lista
         Product_adapter adapter = new Product_adapter(MainActivity.this, 0, getShopingList());
         lsShList.setAdapter(adapter);
+
+        // Agrega las opciones todos, lactosa, gluten al spinner con un arrayadapter
+        ArrayAdapter<String> filterAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Todos los productos", "Productos con Lactosa", "Productos con luten"});
+        filterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spfilter.setAdapter(filterAdapter);
+        // Se configura el listener para filtrar los productos según la opción seleccionada
+        spfilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String filter = (String) parent.getItemAtPosition(position);
+                List<Product> filteredProducts;
+
+                switch (filter) {
+                    case "lactosa":
+                        filteredProducts = DataBase.getLactosaList();
+                        break;
+                    case "gluten":
+                        filteredProducts = DataBase.getGlutenList();
+                        break;
+                    default:
+                        filteredProducts = getShopingList();
+                        break;
+                }
+
+                Product_adapter adapter = new Product_adapter(MainActivity.this, 0, filteredProducts);
+                lsShList.setAdapter(adapter);
+            }
+
+            //metodo implementado por onitemselectedlistener
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+
+        });
+
 
         // Configuración del botón para añadir productos desde la lista desplegable
         btnAddToList.setOnClickListener(new View.OnClickListener() {

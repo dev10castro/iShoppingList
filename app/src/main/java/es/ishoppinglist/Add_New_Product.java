@@ -29,7 +29,7 @@ public class Add_New_Product extends AppCompatActivity {
     // Elementos de la interfaz para introducir y mostrar datos del producto
     private TextView textIdAddP;
     private EditText editTextText, editTextInfoAddP;
-    private Switch switchAddP;
+    private Switch switchAddP,swLactosa,swgluten;
 
 
     @Override
@@ -50,6 +50,9 @@ public class Add_New_Product extends AppCompatActivity {
         editTextText = findViewById(R.id.editTextText);
         editTextInfoAddP = findViewById(R.id.editTextInfoAddP);
         switchAddP = findViewById(R.id.switchAddP);
+        swLactosa = findViewById(R.id.switchLactosa);
+        swgluten = findViewById(R.id.switchGluten);
+
 
         // Establece el ID máximo de la lista de productos en el TextView
         textIdAddP.setText(String.valueOf(DataBase.getLastId()));
@@ -64,7 +67,8 @@ public class Add_New_Product extends AppCompatActivity {
                 pAux.setNombre_producto(editTextText.getText().toString());
                 pAux.setNota_info(editTextInfoAddP.getText().toString());
                 pAux.setEstado_compra(switchAddP.isChecked());
-
+                pAux.setLactosa(swLactosa.isChecked());
+                pAux.setGluten(swgluten.isChecked());
                 // Registrar los detalles del producto en el log
                 Log.d("Add_New_Product", "Adding product: " + pAux.toString());
 

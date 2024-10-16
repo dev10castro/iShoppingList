@@ -28,6 +28,13 @@
 
             />
 
+        <Spinner
+            android:id="@+id/spinnerFiltro"
+            android:layout_width="match_parent"
+            android:background="@drawable/fondo"
+            android:layout_height="35dp"
+            android:layout_margin="10dp"/>
+
         <ListView
             android:id="@+id/lvShoProduct"
             android:layout_width="match_parent"

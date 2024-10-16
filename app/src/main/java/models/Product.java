@@ -8,13 +8,33 @@ public class Product implements Serializable {
     private String nombre_producto;
     private String nota_info;
     private boolean estado_compra;
+    private boolean lactosa;
+    private boolean gluten;
 
 
-    public Product(int id, String nombre_producto, String nota_info, boolean estado_compra) {
+    public Product(int id, String nombre_producto, String nota_info, boolean estado_compra, boolean lactosa, boolean gluten) {
         this.id = id;
         this.nombre_producto = nombre_producto;
         this.nota_info = nota_info;
         this.estado_compra = estado_compra;
+        this.lactosa=lactosa;
+        this.gluten=gluten;
+    }
+
+    public boolean isLactosa() {
+        return lactosa;
+    }
+
+    public void setLactosa(boolean lactosa) {
+        this.lactosa = lactosa;
+    }
+
+    public boolean isGluten() {
+        return gluten;
+    }
+
+    public void setGluten(boolean gluten) {
+        this.gluten = gluten;
     }
 
     public Product() {

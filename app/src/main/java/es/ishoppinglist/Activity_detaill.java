@@ -24,7 +24,7 @@ public class Activity_detaill extends AppCompatActivity {
     Button backToMain;
 
     // TextViews para mostrar los detalles del producto
-    TextView tvname, tvInfo, tvEstado, tvId;
+    TextView tvname, tvInfo, tvEstado, tvId,tvlactosa,tvgluten;
 
 
     @Override
@@ -45,7 +45,8 @@ public class Activity_detaill extends AppCompatActivity {
         tvInfo = findViewById(R.id.textInfoDP);
         tvEstado = findViewById(R.id.textEstadoDP);
         tvId = findViewById(R.id.textIdDP);
-
+        tvlactosa=findViewById(R.id.textLactosadet);
+        tvgluten=findViewById(R.id.textGlutendet);
         // Obtiene el Intent que inició esta actividad y recupera el producto pasado como extra
         Intent intent = getIntent();
         Product p = (Product) intent.getSerializableExtra("product");
@@ -60,6 +61,17 @@ public class Activity_detaill extends AppCompatActivity {
             } else {
                 tvEstado.setText("Pendiente");
             }
+            if(p.isLactosa()){
+                tvlactosa.setText("Si");
+            }else{
+                tvlactosa.setText("No");
+            }
+            if(p.isGluten()){
+                tvgluten.setText("Si");
+            }else{
+                tvgluten.setText("No");
+            }
+
         }
 
         // Configura el botón para volver a la actividad principal cuando se presiona

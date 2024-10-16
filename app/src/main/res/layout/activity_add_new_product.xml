@@ -107,6 +107,21 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Añadir también al sistema" />
+
+            <Switch
+                android:id="@+id/switchLactosa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contiene Lactosa"
+                android:layout_margin="10dp"/>
+
+            <Switch
+                android:id="@+id/switchGluten"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contiene Gluten o trazas"
+                android:layout_margin="10dp"/>
+
         </LinearLayout>
     </ScrollView>
 
